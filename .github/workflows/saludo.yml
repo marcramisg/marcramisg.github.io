@@ -1,33 +1,33 @@
 name: Saludo Diario a las 11:00 (hora España)
-
 on:
   schedule:
     - cron: '0 9 * * *'
-  workflow_dispatch:      
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   generar-html:
     runs-on: ubuntu-latest
-
     steps:
       - name: Clonar el repositorio y cambiar a gh-pages
         uses: actions/checkout@v4
         with:
           ref: gh-pages
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Configurar zona horaria
-        run: sudo timedatectl set-timezone Europe/Madrid
-
+      
       - name: Generar saludo del día y actualizar índice
         run: |
           mkdir -p saludos
-
+          # Configurar zona horaria para esta sesión
+          export TZ=Europe/Madrid
+          
           # Crear saludo diario
           FECHA_TEXTO=$(date +"%A %d de %B de %Y")
           FECHA_ARCHIVO=$(date +'%Y-%m-%d')
           echo "<!DOCTYPE html><html lang='es'><head><meta charset='UTF-8'><title>Saludo $FECHA_ARCHIVO</title></head><body><h1>Buenos días, hoy es $FECHA_TEXTO</h1></body></html>" > saludos/$FECHA_ARCHIVO.html
-
+          
           # Regenerar index de saludos
           echo "<!DOCTYPE html><html lang='es'><head><meta charset='UTF-8'><title>Historial de saludos</title></head><body><h1>Saludos diarios</h1><ul>" > saludos/index.html
           for f in saludos/*.html; do
@@ -37,7 +37,7 @@ jobs:
             fi
           done
           echo "</ul></body></html>" >> saludos/index.html
-
+      
       - name: Hacer commit y push a gh-pages
         run: |
           git config user.name "github-actions"
