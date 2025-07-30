@@ -40,10 +40,7 @@ jobs:
       - name: Hacer commit y push a gh-pages
         run: |
           git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add saludos/
-          git commit -m "Saludo diario para $(date +'%Y-%m-%d')" || echo "Sin cambios que commitear"
-          git push origin gh-pages "github-actions@github.com"
-          git add index.html
-          git commit -m "Actualización diaria del saludo - $(date '+%Y-%m-%d')" || echo "Sin cambios"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add index.html saludos/
+          git commit -m "Actualización diaria del saludo - $(date '+%Y-%m-%d')" || echo "Sin cambios que commitear"
           git push origin gh-pages
