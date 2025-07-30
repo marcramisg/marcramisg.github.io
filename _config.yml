@@ -3,3 +3,9 @@ description: Este es un sitio de ejemplo
 baseurl: ""
 url: "https://marcramisg.github.io"
 theme: jekyll-theme-minimal
+
+plugins:                        
+  - jekyll-feed
+  - jekyll-seo-tag 
+
+markdown: kramdown 
