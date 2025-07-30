@@ -11,6 +11,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
     {% include head-custom.html %}
+    <nav>
+      <ul>
+        <li><a href="{{ '/' | relative_url }}">Inicio</a></li>
+        <li><a href="{{ '/about' | relative_url }}">Sobre mí</a></li>
+        <li><a href="{{ '/blog' | relative_url }}">Blog</a></li>
+        <li><a href="{{ '/contact' | relative_url }}">Contacto</a></li>
+      </ul>
+    </nav>
   </head>
   <body>
     <div class="wrapper">
