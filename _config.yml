@@ -2,4 +2,4 @@ title: Mi sitio con Jekyll
 description: Este es un sitio de ejemplo
 baseurl: ""
 url: "https://marcramisg.github.io"
-theme: minima
+theme: minimal
