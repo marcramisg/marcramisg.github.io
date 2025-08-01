@@ -1,4 +1,4 @@
-name: Saludo Diario a las 11:00 (hora España)
+name: Saludo Diario a las 11:00
 on:
   schedule:
     - cron: '0 9 * * *'
